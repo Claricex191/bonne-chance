@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Job Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+<div class="app-shell">
+
+  <header>
+    <div class="logo">Bonne<span>Chance</span></div>
+    <div class="header-meta" id="header-meta"></div>
+  </header>
+
+  <main>
+
+    <!-- Left column -->
+    <div class="left-col">
+
+      <!-- Add application -->
+      <div class="card">
+        <div class="card-title">Add application</div>
+        <div class="url-input-row">
+          <input
+            id="inp-url"
+            type="url"
+            placeholder="Paste job URL and hit Fetch…"
+          />
+          <button id="btn-fetch" onclick="fetchJobFromUrl()">
+            <i class="ti ti-link"></i> Fetch
+          </button>
+        </div>
+
+        <div class="status-msg" id="status-msg"></div>
+
+        <!-- Confirm card — hidden until a URL is parsed -->
+        <div class="preview-card" id="preview-card">
+          <div class="preview-card-header">
+            <span class="preview-card-title">Confirm details</span>
+            <button class="btn-ghost" onclick="clearPreview()">
+              <i class="ti ti-x"></i>
+            </button>
+          </div>
+          <div class="preview-fields" id="preview-fields"></div>
+          <div class="preview-actions" id="preview-actions"></div>
+        </div>
+      </div>
+
+      <!-- Funnel chart -->
+      <div class="card">
+        <div class="card-title">Funnel</div>
+        <div class="funnel-wrap" id="funnel-wrap"></div>
+      </div>
+
+    </div>
+
+    <!-- Right column -->
+    <div class="right-col">
+
+      <!-- Metric cards -->
+      <div class="metrics-grid" id="metrics-grid"></div>
+
+      <!-- Applications table -->
+      <div class="card">
+        <div class="card-title">All applications</div>
+        <div class="table-toolbar">
+          <input
+            type="search"
+            placeholder="Search company, role…"
+            oninput="onSearch(this.value)"
+            style="width:200px"
+          />
+          <select onchange="applyFilter('status', this.value)">
+            <option value="">All statuses</option>
+            <option value="applied">Applied</option>
+            <option value="submitted">Submitted</option>
+            <option value="interviewed">Interviewed</option>
+            <option value="offer">Offer</option>
+            <option value="rejected">Rejected</option>
+          </select>
+          <select onchange="applyFilter('source', this.value)">
+            <option value="">All sources</option>
+            <option>LinkedIn</option>
+            <option>Indeed</option>
+            <option>Greenhouse</option>
+            <option>Lever</option>
+            <option>Workday</option>
+            <option>Company Website</option>
+            <option>Referral</option>
+          </select>
+        </div>
+
+        <div style="overflow-x:auto">
+          <table>
+            <thead>
+              <tr>
+                <th>Company</th>
+                <th>Role</th>
+                <th>Job ID</th>
+                <th>Source</th>
+                <th>Status</th>
+                <th>Applied</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="app-tbody"></tbody>
+          </table>
+        </div>
+
+        <div class="pagination" id="pagination"></div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<div id="toast"></div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>
