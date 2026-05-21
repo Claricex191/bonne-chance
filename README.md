@@ -5,7 +5,7 @@ Bonne Chance is a personal job application tracker built to handle high-volume j
 
 ## Features
 
-- **URL-powered entry** — paste any job posting URL and the backend fetches the page, strips the HTML, and sends the parsed text to the Anthropic Messages API to extract structured fields (company, role, job ID)
+- **Simple entry** — paste any job posting URL and the backend fetches the page, strips the HTML, and sends the parsed text to the Anthropic Messages API to extract structured fields (company, role, job ID)
 - **Live funnel chart** — visualize your pipeline from applied → submitted → interviewed → offer
 - **Status tracking** — update application status inline directly from the table
 - **Search and filter** — filter by status, source, or search by company and role
